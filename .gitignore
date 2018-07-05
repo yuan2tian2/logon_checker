@@ -1,0 +1,10 @@
+obj/*
+*.dll
+*.zip
+*.exe
+*.wixobj
+*.obj
+*.wixpdb
+build.bat
+installer/makeinstaller.bat
+dll/compile.bat

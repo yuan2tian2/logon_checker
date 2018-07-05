@@ -1,0 +1,89 @@
+<Window x:Class="MainWindow"
+		xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+		xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+		Title="PC稼動履歴リーダー" FontSize="16" Height="650" Width="850">
+	<Grid Background="#FFC3C3C3" >
+		<Grid.RowDefinitions>
+			<RowDefinition Height="50" />
+			<RowDefinition Height="auto" />
+			<RowDefinition Height="100" />
+		</Grid.RowDefinitions>
+		<Grid.ColumnDefinitions>
+			<ColumnDefinition Width="135" />
+			<ColumnDefinition Width="30" />
+			<ColumnDefinition Width="135" />
+			<ColumnDefinition Width="150" />
+			<ColumnDefinition Width="150" />
+			<ColumnDefinition Width="auto" />
+		</Grid.ColumnDefinitions>
+		<DatePicker Name="dateFrom" Width="120" Height="30"
+			Grid.Row="0" Grid.Column="0" Margin="10 0 20 0" 
+			IsTodayHighlighted="True" />
+		<Label Name="lblWave" Content="～" Width="30" Height="30" 
+			Grid.Row="0" Grid.Column="1" Margin="0 0 0 0" />
+		<DatePicker Name="dateTo" Width="120" Height="30"
+			Grid.Row="0" Grid.Column="2" Margin="10 0 20 0" 
+			IsTodayHighlighted="True" />
+		<Button Name="btnRead" Content="ログ読込" Click ="btnRead_Click"
+			Width="120" Height="30" HorizontalAlignment="Left"
+			Grid.Row="0" Grid.Column="3" Margin="20 0 20 0" />
+		<Button Name="btnExport" Content="エクスポート" Click="btnExport_Click"
+			Width="120" Height="30" HorizontalAlignment="Left"
+			Grid.Row="0" Grid.Column="4" />
+		<Button Name="btnXml" Content="生ログXML出力" Width="120" Height="30"
+			Margin="20 0 20 0" HorizontalAlignment="Left"
+			Grid.Row="0" Grid.Column="5" Click="btnXml_Click" />
+		<DataGrid Name="dataGrid" IsReadOnly="True" AutoGenerateColumns="False" 
+				CanUserSortColumns="False" Grid.Row="1" Grid.Column="0" Grid.ColumnSpan="6"
+				Width="840" Height="520"
+				ScrollViewer.CanContentScroll="True" 
+				ScrollViewer.VerticalScrollBarVisibility="Auto"
+				ScrollViewer.HorizontalScrollBarVisibility="Auto"
+				Background="LightYellow" RowBackground="LightBlue" 
+				AlternatingRowBackground="Azure">
+			<DataGrid.Columns>
+				<DataGridTextColumn Header="ユーザ名" Binding="{Binding UserId}" 
+						MinWidth="200" Width="Auto">
+					<DataGridTextColumn.ElementStyle>
+						<Style TargetType="TextBlock">
+							<Setter Property="FontSize" Value="12pt" />
+						</Style>
+					</DataGridTextColumn.ElementStyle>
+				</DataGridTextColumn>
+				<DataGridTextColumn Header="ログオン" MinWidth="200" Width="Auto"
+					Binding="{Binding StartDatetime, StringFormat=\{0:yyyy/MM/dd HH:mm:ss.fff\}}">
+					<DataGridTextColumn.ElementStyle>
+						<Style TargetType="TextBlock">
+							<Setter Property="FontSize" Value="12pt" />
+							<Setter Property="HorizontalAlignment" Value="Right" />
+						</Style>
+					</DataGridTextColumn.ElementStyle>
+				</DataGridTextColumn>
+				<DataGridTextColumn Header="ログオフ" MinWidth="200" Width="Auto"
+					 Binding="{Binding EndDatetime, StringFormat=\{0:yyyy/MM/dd HH:mm:ss.fff\}}">
+					<DataGridTextColumn.ElementStyle>
+						<Style TargetType="TextBlock">
+							<Setter Property="FontSize" Value="12pt" />
+							<Setter Property="HorizontalAlignment" Value="Right" />
+						</Style>
+					</DataGridTextColumn.ElementStyle>
+				</DataGridTextColumn>
+				<DataGridTextColumn Header="稼動時間" MinWidth="150" Width="Auto"
+					Binding="{Binding RunningTime}">
+					<DataGridTextColumn.ElementStyle>
+						<Style TargetType="TextBlock">
+							<Setter Property="FontSize" Value="12pt" />
+							<Setter Property="HorizontalAlignment" Value="Right" />
+						</Style>
+					</DataGridTextColumn.ElementStyle>
+				</DataGridTextColumn>
+			</DataGrid.Columns>
+		</DataGrid>
+		<Label Name="lblCopyright" Content="(C) Copyright HARADA, Takahiko 2018 All rights reserved."
+			HorizontalAlignment="Left" VerticalAlignment="Top" Height="50" FontSize="9pt"
+			Grid.Row="2" Grid.Column="0" Grid.ColumnSpan="4" Margin="20 0 20 0" />
+		<Label Name="lblVersion" HorizontalAlignment="Right" VerticalAlignment="Top"
+			Height="50" FontSize="9pt" Width="100"
+			Grid.Row="2" Grid.Column="2" Grid.ColumnSpan="2" Margin="20 0 20 0" />
+	</Grid>
+</Window>

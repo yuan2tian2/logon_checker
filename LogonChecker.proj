@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<Project xmlns="http://schemas.microsoft.com/developer/msbuild/2003"
+		ToolsVersion="4.0" DefaultTargets="Build">
+	<PropertyGroup>
+		<AssemblyName>LogonChecker</AssemblyName>
+		<TargetFrameworkVersion>v4.0</TargetFrameworkVersion>
+		<Platform>x86</Platform>
+		<RootPath>$([System.IO.Path]::GetFullPath('$MSBuildProjectDirectory)\..\'))</RootPath>
+		<OutputType>WinExe</OutputType>
+		<Configuration>Debug</Configuration>
+		<OutputPath>.\bin\Debug</OutputPath>
+	</PropertyGroup>
+	<PropertyGroup>
+		<AssemblyName>LogonChecker</AssemblyName>
+		<TargetFrameworkVersion>v4.0</TargetFrameworkVersion>
+		<Platform>x86</Platform>
+		<RootPath>$([System.IO.Path]::GetFullPath('$MSBuildProjectDirectory)\..\'))</RootPath>
+		<OutputType>WinExe</OutputType>
+		<Configuration>Release</Configuration>
+		<OutputPath>.\bin\Release</OutputPath>
+	</PropertyGroup>
+	<ItemGroup>
+		<ApplicationDefinition Include="App.xaml" />
+		<Page Include="MainWindow.xaml" />
+		<Compile Include="App.xaml.cs">
+			<DependentUpon>App.xaml</DependentUpon>
+		</Compile>
+		<Compile Include="MainWindow.xaml.cs">
+			<DependentUpon>MainWindow.xaml</DependentUpon>
+		</Compile>
+		<Reference Include="System" />
+		<Reference Include="System.Xaml" />
+		<Reference Include="WindowsBase" />
+		<Reference Include="PresentationCore" />
+		<Reference Include="PresentationFramework" />
+		<Reference Include="System.XML" />
+		<Reference Include=".\dll\logonlogoff.dll" />
+	</ItemGroup>
+
+	<Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
+
+</Project>

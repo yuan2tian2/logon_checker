@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+    <meta charset="UTF-8" />
+    <title>PC稼動履歴リーダー</title>
+</head>
+<body style="font-size:12pt;background-color:#f0f0f0;">
+    <div style="width:100%;">
+        <h1 style="margin-left:auto;margin-right:auto;width:10em;">ＰＣ稼動履歴リーダー</h1>
+    </div>
+    <h2>１　ソフトウェアの概要</h2>
+    <p style="padding-left:1em;">
+        Windowsが保持しているイベントログからPCへのログオン日時、ログオフ日時を抽出して一覧表示します。
+        データはタブ区切りのテキストファイルに出力できるほか、イベントログをXML形式でエクスポートできます。
+    </p>
+
+    <h2>２　作者の連絡先</h2>
+    <p>
+        <span style="font-weight:bold;padding-left:1em;"> はらだ　たかひこ</span>：
+        <a href="mailto:harada.takahiko.factory@gmail.com">harada.takahiko.factory@gmail.com</a>
+    </p>
+
+    <h2>３　取り扱い種別</h2>
+    <p style="padding-left:1em;">
+        フリーウェア（個人利用）
+    </p>
+    <p style="font-size:0.8em;padding-left:2em;">
+        ※法人様での使用につきましては、個別にご相談といたします。
+    </p>
+
+    <h2>４　動作環境</h2>
+    <div style="padding-left:1em;">
+        次の環境で動作することを確認しております。
+        .NET Framework 4.0以降がインストールされている必要があります。
+        他の環境でも.NET Framework 4.0以降がインストールされていれば動作すると思われますが、未確認です。
+        <ul>
+            <li>Windows 7</li>
+            <li>Windows 8.1</li>
+            <li>Windows 10</li>
+        </ul>
+    </div>
+
+    <h2>５　インストール・アンインストール方法</h2>
+    <h3>５－１　インストール</h3>
+    <div style="padding-left:1em;">
+        <p>
+            WindowsインストーラのパッケージLogonChecker.msiをダブルクリックするとインストーラが起動します（標準設定の場合）。
+            インストーラの指示に従って進めばインストールが完了します。
+        </p>
+        <p style="padding-left:1em;color:red;font-weight:bold;">注意</p>
+        <div style="width:95%;margin-left:auto;margin-right:auto; border:2px dashed red;padding:0.5em;">
+        Windows 10ではインストール時にSmartScreenフィルターによってインストーラがブロックされることがあります。
+        具体的には次のようなメッセージが表示されます。<br />
+            <div style="margin-top:1em;margin-bottom:1em;font-size:1.5em;margin-left:auto;margin-right:auto;width:20em;border:1px solid black;background-color:#0FF0FF;padding:1em;">
+            WindowsによってPCが保護されました
+            </div>
+        
+「詳細説明」というリンクをクリックするとインストーラを実行できます。これはインストーラパッケージにデジタル署名を付していないことによるものです。無償提供という特性上、デジタル署名を付すことが難しいことをご理解ください。
+        </div>
+    </div>
+
+    <h3>５－２　アンインストール</h3>
+    <p style="padding-left:1em;">
+        コントロールパネルから「プログラムと機能」を開きます。「ＰＣ稼動履歴リーダー」という項目を探して選択します。右クリックしてコンテキストメニューで「アンインストール」を選択します。
+    </p>
+
+    <h3>６　更新履歴</h3>
+    <div>
+        <ul>
+            <li>2018.04.29 Ver. 1.0.0 作成</li>
+            <li>2018.05.12 Ver. 1.1.0 ログオン記録がない場合に稼働時間がマイナスになる不具合を修正</li>
+            <li>2018.07.05 Ver. 1.2.0 期間を指定して検索できるよう改良</li>
+        </ul>
+    </div>
+</body>
+</html>

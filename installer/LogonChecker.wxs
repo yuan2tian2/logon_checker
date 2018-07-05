@@ -1,0 +1,79 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Wix xmlns="http://schemas.microsoft.com/wix/2006/wi">
+
+	<?define Id = "{ffe64119-197a-4ffd-8d57-9fa893924e9b}" ?>
+	<?define UpgradeCode="{6a0ab4aa-a5ec-4b97-b2aa-4ef7baffa538}" ?>
+	<?define Version="1.2.0" ?>
+
+	<Product Name="PC稼動履歴リーダー $(var.Version)"
+			Id="$(var.Id)"
+			UpgradeCode="$(var.UpgradeCode)"
+			Language="1041" Codepage="932"
+			Version="$(var.Version)" Manufacturer="HARADA, Takahiko">
+		<Package Id="*" Keywords="PC稼動履歴リーダー $(var.Version) インストーラ"
+				Description="PCの稼動していた時間を調査するツールです。"
+				Comments="Windowsのイベントログからログオン時刻、ログオフ時刻を抽出します。"
+				Manufacturer="HARADA, Takahiko" InstallerVersion="100"
+				Languages="1041" Compressed="yes" SummaryCodepage="932" />
+
+
+		<Upgrade Id="$(var.UpgradeCode)">
+			<UpgradeVersion OnlyDetect="no" Property="PREVIOUSFOUND"
+					Minimum="1.0.0" IncludeMinimum="yes"
+					Maximum="$(var.Version)" IncludeMaximum="no" />
+		</Upgrade>
+
+		<InstallExecuteSequence>
+			<RemoveExistingProducts After="InstallInitialize"/>
+		</InstallExecuteSequence>
+
+		<UIRef Id="WixUI_Minimal" />
+		<Media Id="1" Cabinet="LogonChecker.cab" EmbedCab="yes" DiskPrompt="Disk 1" />
+		<Property Id="DiskPrompt" Value="PC稼動履歴リーダー [1]" />
+
+		<!-- インストール先の指定 -->
+		<Directory Id="TARGETDIR" Name="SourceDir">
+			<Directory Id="ProgramFilesFolder" Name="ProgramFiles">
+				<Directory Id="HARADA" Name="haradatakahiko">
+					<Directory Id="INSTALLDIR" Name="LogonChecker">
+						<Component Id="MainExecutable" Guid="{99a3e91a-3a88-4702-8185-c3309550319b}">							<File Id="MainEXE" Name="LogonChecker.exe" DiskId="1" 
+									Source="LogonChecker.exe" KeyPath="yes">
+								<Shortcut Id="LogonCheckerMenu" Directory="ProgramMenuDir"
+										Name="PC稼動履歴リーダー $(var.Version)" 
+										WorkingDirectory="INSTALLDIR"
+										Icon="worker.ico" IconIndex="0" Advertise="yes" />
+								<Shortcut Id="LogonCheckerDesktop" Directory="DesktopFolder"
+										Name="PC稼動履歴リーダー $(var.Version)" 
+										WorkingDirectory="INSTALLDIR"
+										Icon="worker.ico" IconIndex="0" Advertise="yes" />
+							</File>
+						</Component>
+						<Component Id="HelperLibrary" Guid="{72dca605-0cd3-4a64-9c77-0582d3db39b0}">
+							<File Id="EngineDLL" Name="logonlogoff.dll" 
+									DiskId="1" Source="logonlogoff.dll" KeyPath="yes" />
+						</Component>
+					</Directory>
+				</Directory>
+			</Directory>
+
+			<Directory Id="ProgramMenuFolder" Name="はらだたかひこ">
+				<Directory Id="ProgramMenuDir" Name="PC稼動履歴リーダー">
+					<Component Id="ProgramMenuDir" Guid="{2a493d29-bd69-4065-98be-47226247598c}">
+						<RemoveFolder Id="ProgramMenuDir" On="uninstall" />
+						<RegistryValue Root="HKCU" Key="Software\[Manufacturer]\[ProductName]"
+								Type="string" Value="" KeyPath="yes" />
+					</Component>
+				</Directory>
+				<Directory Id="DesktopFolder" Name="Desktop" />
+			</Directory>
+		</Directory>
+
+		<Feature Id="Complete">
+			<ComponentRef Id="MainExecutable" />
+			<ComponentRef Id="HelperLibrary" />
+			<ComponentRef Id="ProgramMenuDir" />
+		</Feature>
+		<Icon Id="worker.ico" SourceFile="worker.ico" />
+		<WixVariable Id="WixUILicenseRtf" Value="licence.rtf" />
+	</Product>
+</Wix>
