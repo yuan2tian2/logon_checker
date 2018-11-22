@@ -1,5 +1,5 @@
 ////////////////////////////////////////////////////////////////////////////////////////////////////
-/// (C) Copyright HARADA, Takahiko 2018 All rights reserved.
+/// (C) Copyright KUBO, Yoshihito 2018 All rights reserved.
 ////////////////////////////////////////////////////////////////////////////////////////////////////
 using System;
 using System.Security.Principal;
@@ -38,8 +38,15 @@ public class LogonRecord : IComparable<LogonRecord>
     public LogonRecord(EventRecord arg)
     {
         // ユーザIDをSIDからアカウント名に変換する
-        NTAccount account = (NTAccount)arg.UserId.Translate(typeof(NTAccount));
-        this.UserId = account.ToString();
+        try
+        {
+            NTAccount account = (NTAccount)arg.UserId.Translate(typeof(NTAccount));
+            this.UserId = account.ToString();
+        }
+        catch(Exception e)
+        {
+            this.UserId = e.Message;
+        }
         this.EventDatetime = (DateTime)arg.TimeCreated;
         this.MachineName = arg.MachineName.ToString();
         this.ProviderName = arg.ProviderName;

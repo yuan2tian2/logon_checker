@@ -1,5 +1,5 @@
 ////////////////////////////////////////////////////////////////////////////////////////////////////
-/// (C) Copyright HARADA, Takahiko 2018 All rights reserved.
+/// (C) Copyright KUBO, Yoshihito 2018 All rights reserved.
 ////////////////////////////////////////////////////////////////////////////////////////////////////
 using System;
 ////////////////////////////////////////////////////////////////////////////////////////////////////
@@ -10,7 +10,7 @@ public class Constants
     public const string PROGRAM_NAME = "PC稼働時間リスト作成";
     
     /// <summary>バージョン</summary>
-    public const string VERSION = "1.2.0";
+    public const string VERSION = "1.2.1";
     
     /// <summary>日付時刻書式</summary>
     public const string DATETIME_FORMAT = "yyyy/MM/dd HH:mm:ss.fff";
